@@ -1,0 +1,169 @@
+
+Back-end in Sails Framework MVC
+
+Steps to setup on machine
+-> cmd or bash
+-> npm install --save
+-> npm install -g nodemon
+-> sails lift or 
+-> npm start or
+-> nodemon start
+
+
+usertypeid = 1 (super admin)
+usertypeid = 2 (normal user)
+
+
+
+let SERVER_NAME                                     = "http://localhost:1337/"       // development
+
+APIKEY                                              = 542f0190-ad6f-11e5-93d5-039280b0a321
+
+----Use Post Method--to--proceed--Raw---Json---add APIKEY in the header of postman--------
+
+
+================================Library Module===================================================
+API 1)
+GET_SERVICE                                         = "libraries/library"    (  )
+{
+  "libraryid": "d0b64db0-012b-11e8-9731-751812ab0bab",
+  "createdby": "c16029d0-0126-11e8-ab93-8199fd7a25dc"
+}
+
+API 2)
+GET_LIST_SERVICE                                    = "libraries/librarieslist"    ( )
+{
+ 
+  "isactive": "1"
+}
+
+API 3) Register libraries
+ADD_SERVICE                                         = "libraries/addlibrary"   ( )
+{
+  "name": "Math library",
+  "address": "Mohali",
+  "isactive": "1",
+  "createdby": "c16029d0-0126-11e8-ab93-8199fd7a25dc"
+}
+
+API 4) 
+UPDATE_SERVICE                                      = "libraries/updatelibrary"   ( )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "createdby": "d0b64db0-012b-11e8-9731-751812ab0bab",
+  "name": "Math Library",
+  "address": "Zirakpur city",
+  "isactive": "1"
+}
+
+
+================================Login/Registration Module with library===================================================
+API 1) login users for a library
+LOGIN_SERVICE                                       = "users/login"    (  )
+{  
+  "libraryid": "ecdfdad0-0138-11e8-ab62-27a12b6cf672",
+  "username": "user1",
+  "password": "123456!"
+}
+
+API 2) Register users for a library
+SIGNUP_SERVICE                                      = "users/adduser"   (  )
+{
+  "libraryid": "ecdfdad0-0138-11e8-ab62-27a12b6cf672",
+  "firstname": "userf",
+  "lastname": "userl",
+  "username": "user1",
+  "password": "123456!",
+  "email": "librarian1@hifidevelopers.com",
+  "phoneno": "9417941370",
+  "createdby": "d0b64db0-012b-11e8-9731-751812ab0bab",
+  "usertypeid": "2",
+  "isactive": "1"
+}
+
+API 3) 
+UPDATE_SERVICE                                      = "users/updateuser"   (  )
+{
+  
+  "libraryid": "ecdfdad0-0138-11e8-ab62-27a12b6cf672",
+  "firstname": "userf",
+  "lastname": "userl",
+  "username": "user1",
+  "password": "123456!",
+  "email": "user1@hifidevelopers.com",
+  "phoneno": "9417941370",
+  "isactive": "1",
+   "userid": "c2462590-013d-11e8-b106-9757d6ea1299"
+}
+
+
+
+================================Books Module===================================================
+API 1)
+GET_SERVICE                                         = "books/book"    (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "bookid": "3f4f5670-0147-11e8-a250-732e68f8288f"
+}
+
+API 2) Show a user all available books in the library
+GET_LIST_SERVICE                                    = "books/bookslist"    (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "isactive": "1"
+}
+
+API 3) Add books to the library
+ADD_SERVICE                                         = "books/addbook"   (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "name": "Object Oriented Programming",
+  "authorname": "Robert",
+  "authoraddress": "Chicago, USA",
+  "coverphoto": "https://images-na.ssl-images-amazon.com/images/I/51bnZOatz9L._SX379_BO1,204,203,200_.jpg",
+  "isactive": "1"
+}
+
+API 4) 
+UPDATE_SERVICE                                      = "books/updatelibrary"   (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "name": "You Can Win",
+  "authorname": "Shiv Khera",
+  "authoraddress": "India",
+  "coverphoto": "https://images-na.ssl-images-amazon.com/images/I/41iyWT8UrVL._SX322_BO1,204,203,200_.jpg",
+  "isactive": "1",
+  "bookid":"a8c9bfa0-0147-11e8-a250-732e68f8288f"
+}
+
+
+
+================================BookLoan - Issue Module===================================================
+API 1) Show a user all their issued books
+GET_LIST_SERVICE                                    = "bookloans/issuedbookslist"    (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "userid": "7c662730-0149-11e8-a1a3-ffa73b2e99e2"
+}
+
+API 2) Allow a user issue available books
+ADD_SERVICE                                         = "bookloans/addbookloan"   (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "bookid": "3f4f5670-0147-11e8-a250-732e68f8288f",
+  "userid": "7c662730-0149-11e8-a1a3-ffa73b2e99e2",
+  "cardno": "47a12b6cf672",
+  "isactive": "1",
+  "issuedby": "eecc3a20-013b-11e8-b106-9757d6ea1299"
+}
+
+API 3) Allow a user to return their issued books
+UPDATE_SERVICE                                      = "bookloans/updatebookloan"   (  )
+{
+  "libraryid": "66fe36e0-0139-11e8-ab62-27a12b6cf672",
+  "bookid": "3f4f5670-0147-11e8-a250-732e68f8288f",
+  "userid": "7c662730-0149-11e8-a1a3-ffa73b2e99e2",
+  "cardno": "47a12b6cf672",
+  "isactive": "0",
+  "loanid": "a5bec030-0160-11e8-91f5-9789f0de44a8"
+}
